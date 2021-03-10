@@ -91,6 +91,7 @@ def sendTg(tgBot):
     try:
         token = tgBot['tgToken']
         chat_id = tgBot['tgUserId']
+        api = tgBot['api']
         #发送内容
         content = readFile_text('./log.txt')
         data = {
@@ -101,7 +102,7 @@ def sendTg(tgBot):
         #token = os.environ.get('TG_TOKEN')
         #用户的ID
         #chat_id = os.environ.get('TG_USERID')
-        url = f'https://api.telegram.org/bot{token}/sendMessage?chat_id={chat_id}&text={content}'
+        url = f'{api}/bot{token}/sendMessage?chat_id={chat_id}&text={content}'
         session = requests.Session()
         resp = session.post(url)
         print(resp)
